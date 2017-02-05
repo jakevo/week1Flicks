@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6E17C6F41E466B210063FA76 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E17C6F31E466B210063FA76 /* MovieModel.swift */; };
 		6E17C6FF1E46B27A0063FA76 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E17C6FE1E46B27A0063FA76 /* Reachability.swift */; };
+		6E17C7031E47142E0063FA76 /* icons-390.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E17C7021E47142E0063FA76 /* icons-390.jpg */; };
 		6E4688E11E4257DA0036C4F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4688E01E4257DA0036C4F3 /* AppDelegate.swift */; };
 		6E4688E31E4257DA0036C4F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4688E21E4257DA0036C4F3 /* ViewController.swift */; };
 		6E4688E61E4257DA0036C4F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E4688E41E4257DA0036C4F3 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		6E17C6F31E466B210063FA76 /* MovieModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieModel.swift; path = Flicks/MovieModel.swift; sourceTree = SOURCE_ROOT; };
 		6E17C6F81E46ADAC0063FA76 /* Flicks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flicks-Bridging-Header.h"; sourceTree = "<group>"; };
 		6E17C6FE1E46B27A0063FA76 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		6E17C7021E47142E0063FA76 /* icons-390.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "icons-390.jpg"; sourceTree = "<group>"; };
 		6E4688DD1E4257DA0036C4F3 /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E4688E01E4257DA0036C4F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E4688E21E4257DA0036C4F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				6E4688E21E4257DA0036C4F3 /* ViewController.swift */,
 				6E4688E41E4257DA0036C4F3 /* Main.storyboard */,
 				6E4688EA1E4257DA0036C4F3 /* Assets.xcassets */,
+				6E17C7021E47142E0063FA76 /* icons-390.jpg */,
 				6E4688EC1E4257DA0036C4F3 /* LaunchScreen.storyboard */,
 				6E4688EF1E4257DA0036C4F3 /* Info.plist */,
 				6E4688E71E4257DA0036C4F3 /* Flicks.xcdatamodeld */,
@@ -309,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E4688EE1E4257DA0036C4F3 /* LaunchScreen.storyboard in Resources */,
+				6E17C7031E47142E0063FA76 /* icons-390.jpg in Resources */,
 				6E4688EB1E4257DA0036C4F3 /* Assets.xcassets in Resources */,
 				6E4688E61E4257DA0036C4F3 /* Main.storyboard in Resources */,
 			);

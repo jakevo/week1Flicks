@@ -24,6 +24,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
     func refresh() {
         getData()
         filterMovie.removeAll()
+        testingConnection()
     }
 
     
@@ -33,34 +34,36 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
-    func checkInternet() {
+    func checkInternet() -> Bool{
         if Reachability.isConnectedToNetwork() == true {
-            print("Internet connection OK")
+            return true
         } else {
-            print("Internet connection FAILED")
-            let alert = UIAlertController(title: "No Internet Connection", message: "Make sure your devide is connected to internet", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            return false
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        checkInternet()
-        searchBarFunc()
-        customNavBar()
+        refresher = UIRefreshControl()
+        testingConnection()
         tableView.dataSource = self
         tableView.delegate = self
-        
-        refresher = UIRefreshControl()
-        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        //refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(MovieViewController.refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refresher)
         refresh()
+
     }
     
-    
+    func testingConnection() {
+        if checkInternet() {
+            searchBarFunc()
+            customNavBar(signal: 0)
+        } else {
+            //refresher.isEnabled = false
+            customNavBar(signal: 1)
+        }
+    }
     
     func getData() {
         
@@ -103,12 +106,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         searchBar.delegate = self
         searchBar.enablesReturnKeyAutomatically = true
         searchBar.sizeToFit()
-        //searchBar.showsCancelButton = true
-        //searchBar.searchBarStyle = UISearchBarStyle.minimal
-    
         self.tableView.tableHeaderView = searchBar
-        //self.navigationItem.titleView = searchBar
-
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -125,18 +123,27 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.refresher.endRefreshing()
     }
     
-    func customNavBar() {
+    func customNavBar(signal: Int) {
         self.edgesForExtendedLayout = []
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.black // I then set the color using:
         
-        self.navigationController?.navigationBar.barTintColor   = UIColor(red: 204/255, green: 47/255, blue: 40/255, alpha: 1.0) // a lovely red
-        
-        self.navigationController?.navigationBar.tintColor = UIColor.white // for titles, buttons, etc.
-        
-        let navigationTitleFont = UIFont(name: "Avenir", size: 20)!
-        
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: navigationTitleFont]
+        var titleColor: NSDictionary = [:]
+        if signal == 0 {
+            self.navigationController?.navigationBar.topItem?.title = "Now Playing"
 
+            self.navigationController?.navigationBar.barTintColor   = UIColor(red: 204/255, green: 47/255, blue: 40/255, alpha: 1.0) // a lovely red
+            let navigationTitleFont = UIFont(name: "Avenir", size: 20)!
+            titleColor = [NSForegroundColorAttributeName: UIColor.white]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: navigationTitleFont]
+        } else {
+            titleColor = [NSForegroundColorAttributeName: UIColor.black]
+
+            //self.navigationController?.navigationBar.barStyle = UIBarStyle.default
+            
+            self.navigationController?.navigationBar.topItem?.title = "Networking Error!"
+            //self.tableView.isHidden = true
+        }
+        
+        self.navigationController?.navigationBar.titleTextAttributes = titleColor as? [String : Any]
     }
     
     
@@ -164,21 +171,18 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
                 
                 // imageResponse will be nil if the image is cached
                 if imageResponse != nil {
-                    print("Image was NOT cached, fade in image")
                     cell.poster.alpha = 0.0
                     cell.poster.image = image
-                    UIView.animate(withDuration: 1, animations: { () -> Void in
+                    UIView.animate(withDuration: 1.2, animations: { () -> Void in
                         cell.poster.alpha = 1.0
                     })
                 } else {
-                    print("Image was cached so just update the image")
                     cell.poster.image = image
                 }
         },
             failure: { (imageRequest, imageResponse, error) -> Void in
                 // do something for the failure condition
         })
-        //cell.poster.setImageWith(model.imageURL)
         return cell
     }
 }
