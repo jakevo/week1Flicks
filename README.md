@@ -1,4 +1,4 @@
-# Project 1 - *Name of App Here*
+# Project 1 - *FLICKS*
 
 **Flicks** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
@@ -34,7 +34,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://imgur.com/2QQfZrf.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![Screenshot](FLICKS.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
