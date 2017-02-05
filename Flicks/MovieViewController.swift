@@ -46,23 +46,24 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         checkInternet()
-
         searchBarFunc()
         customNavBar()
         tableView.dataSource = self
         tableView.delegate = self
-        refresh()
+        
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(MovieViewController.refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refresher)
-        
+        refresh()
     }
     
     
     
     func getData() {
+        
         
         let apiKey = "05d4c5aa7a9a732d6c86856efd017c55"
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")!
@@ -72,11 +73,10 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             if let data = data {
                 if let retValue = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
-                    
                     self.movieSearch = retValue["results"] as! [NSDictionary]
-                    
+                    //remove everything before uploading new data to movieSearch1
+                    self.movieSearch1.removeAll()
                     for x in self.movieSearch {
-                        
                         if let poster_path = x["poster_path"] as? String {
                             let base_url = "https://image.tmdb.org/t/p/w342/"
                             let posterURL = URL(string: base_url + poster_path)!
@@ -112,7 +112,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
+        
         if searchText.isEmpty == false {
             self.movieSearch1 = filterMovie.filter({ (mod) -> Bool in
                 return mod.title.lowercased().contains(searchText.lowercased())
