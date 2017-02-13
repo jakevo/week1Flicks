@@ -11,4 +11,6 @@ target 'Flicks' do
   # Pods for Flicks
   pod 'AFNetworking', '~> 3.0'
   pod 'MBProgressHUD'
+  pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
+  pod "youtube-ios-player-helper", "~> 0.1.1"
 end

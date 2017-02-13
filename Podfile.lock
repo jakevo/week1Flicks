@@ -14,16 +14,33 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
   - MBProgressHUD (1.0.0)
+  - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - MBProgressHUD
+  - youtube-ios-player-helper (~> 0.1.1)
+
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: dcf98f9bf3a632a7f40679b7da46f09681e48526
+    :git: https://github.com/ViccAlexander/Chameleon.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 4f7fc663139f2b710a86b85f5f5ed4a070b318d0
+PODFILE CHECKSUM: 983543a128a0e89fdf7b7852d7dc250c2e5a1460
 
 COCOAPODS: 1.1.1

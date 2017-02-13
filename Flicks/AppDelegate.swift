@@ -15,8 +15,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-         //application.statusBarHidden = true
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let nowPlayingNavigationController = storyboard.instantiateViewController(withIdentifier: "firstNav") as! UINavigationController
+        
+        let nowPlayingViewController = nowPlayingNavigationController.topViewController as! CollectionViewController
+        
+        nowPlayingViewController.endPoint = "now_playing"
+        nowPlayingViewController.barTitle = "Now Playing"
+        nowPlayingNavigationController.tabBarItem.title = "Now Playing"
+        nowPlayingNavigationController.tabBarItem.image = UIImage(named: "nowplaying-2x")
+        nowPlayingNavigationController.tabBarItem.badgeColor = UIColor.cyan
+        let nowPlayingNavigationController1 = storyboard.instantiateViewController(withIdentifier: "firstNav") as! UINavigationController
+        
+        let nowPlayingViewController1 = nowPlayingNavigationController1.topViewController as! CollectionViewController
+        
+        nowPlayingViewController1.endPoint = "top_rated"
+        nowPlayingViewController1.barTitle = "Top Rated"
+        nowPlayingNavigationController1.tabBarItem.title = "Top Rated"
+        nowPlayingNavigationController1.tabBarItem.image = UIImage(named: "toprated-2x")
+
+        let tabBarController = UITabBarController()
+        
+        tabBarController.viewControllers = [nowPlayingNavigationController,nowPlayingNavigationController1]
+        
+        
+        window?.rootViewController = tabBarController
+        
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

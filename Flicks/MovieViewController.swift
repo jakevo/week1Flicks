@@ -15,12 +15,15 @@ import SystemConfiguration
 class MovieViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     let searchBar = UISearchBar()
     
+    @IBOutlet weak var changeView: UIBarButtonItem!
     //var movie: [NSDictionary] = []
     var movieSearch: [NSDictionary] = []
     var filterMovie: [MovieModel] = []
     var movieSearch1: [MovieModel] = []
     var refresher: UIRefreshControl!
     @IBOutlet weak var tableView: UITableView!
+    
+    
     func refresh() {
         getData()
         filterMovie.removeAll()
@@ -48,7 +51,6 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         testingConnection()
         tableView.dataSource = self
         tableView.delegate = self
-        //refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(MovieViewController.refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refresher)
         refresh()
@@ -60,13 +62,11 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
             searchBarFunc()
             customNavBar(signal: 0)
         } else {
-            //refresher.isEnabled = false
             customNavBar(signal: 1)
         }
     }
     
     func getData() {
-        
         
         let apiKey = "05d4c5aa7a9a732d6c86856efd017c55"
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")!
@@ -123,17 +123,31 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.refresher.endRefreshing()
     }
     
+    @IBAction func changeView(_ sender: Any) {
+        
+        
+    }
+    
+    
+    func callMethod() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CollectionViewController") as! CollectionViewController
+        self.present(vc, animated: true, completion: nil)
+        //presentViewController(vc, animated: true, completion: nil)
+    
+    }
+
     func customNavBar(signal: Int) {
         self.edgesForExtendedLayout = []
         
         var titleColor: NSDictionary = [:]
         if signal == 0 {
             self.navigationController?.navigationBar.topItem?.title = "Now Playing"
-
-            self.navigationController?.navigationBar.barTintColor   = UIColor(red: 204/255, green: 47/255, blue: 40/255, alpha: 1.0) // a lovely red
+            
+            self.navigationController?.navigationBar.barTintColor   = UIColor(red:1.00, green:0.68, blue:0.40, alpha:1.0)
             let navigationTitleFont = UIFont(name: "Avenir", size: 20)!
-            titleColor = [NSForegroundColorAttributeName: UIColor.white]
+            titleColor = [NSForegroundColorAttributeName: UIColor.black]
             self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: navigationTitleFont]
+            
         } else {
             titleColor = [NSForegroundColorAttributeName: UIColor.black]
 
@@ -145,7 +159,6 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         self.navigationController?.navigationBar.titleTextAttributes = titleColor as? [String : Any]
     }
-    
     
     //@available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -179,6 +192,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
                 } else {
                     cell.poster.image = image
                 }
+                cell.backgroundColor = UIColor(red:1.00, green:0.68, blue:0.40, alpha:1.0)
         },
             failure: { (imageRequest, imageResponse, error) -> Void in
                 // do something for the failure condition
