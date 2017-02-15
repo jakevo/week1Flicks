@@ -175,11 +175,12 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        collectionView.cellForItem(at: indexPath)?.backgroundColor = UIColor.red
+
     }
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     //@available(iOS 6.0, *)
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        collectionView.cellForItem(at: indexPath)?.backgroundColor = UIColor.red
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! MovieCollectionViewCell
         let dataMovie = movieSearch1[indexPath.row]
