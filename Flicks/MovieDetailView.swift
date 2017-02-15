@@ -38,6 +38,7 @@ class MovieDetailView: UIViewController, YTPlayerViewDelegate {
         getData(idMovie: movieID!)
     }
     @IBAction func playVideo(_ sender: Any) {
+        print("the movie ID is \(temp!)")
         videoView.load(withVideoId: temp!)
     }
     

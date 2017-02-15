@@ -171,7 +171,10 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell") as! MovieCell
         let model = movieSearch1[indexPath.row]
-        
+        let backgroundView = UIView()
+        cell.selectionStyle = .none
+        backgroundView.backgroundColor = UIColor.red
+        cell.selectedBackgroundView = backgroundView
         cell.title.text = model.title
         cell.overview.text = model.overview
         
